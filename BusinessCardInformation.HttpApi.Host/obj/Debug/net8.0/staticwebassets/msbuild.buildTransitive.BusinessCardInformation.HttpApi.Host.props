@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\BusinessCardInformation.HttpApi.Host.props" />
+</Project>

@@ -1,0 +1,16 @@
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\bin\Debug\net8.0\BusinessCardInformation.Domain.deps.json
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\bin\Debug\net8.0\BusinessCardInformation.Domain.dll
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\bin\Debug\net8.0\BusinessCardInformation.Domain.pdb
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\obj\Debug\net8.0\BusinessCardInformation.Domain.csproj.AssemblyReference.cache
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\obj\Debug\net8.0\BusinessCardInformation.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\obj\Debug\net8.0\BusinessCardInformation.Domain.AssemblyInfoInputs.cache
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\obj\Debug\net8.0\BusinessCardInformation.Domain.AssemblyInfo.cs
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\obj\Debug\net8.0\BusinessCardInformation.Domain.csproj.CoreCompileInputs.cache
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\obj\Debug\net8.0\BusinessCardInformation.Domain.sourcelink.json
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\obj\Debug\net8.0\BusinessCardInformation.Domain.dll
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\obj\Debug\net8.0\refint\BusinessCardInformation.Domain.dll
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\obj\Debug\net8.0\BusinessCardInformation.Domain.pdb
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\obj\Debug\net8.0\ref\BusinessCardInformation.Domain.dll
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\bin\Debug\net8.0\BusinessCardInformation.Domain.Shared.dll
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\bin\Debug\net8.0\BusinessCardInformation.Domain.Shared.pdb
+C:\Users\moham\source\repos\BusinessCardInformation\business-card-information-backend\BusinessCardInformation.Domain\obj\Debug\net8.0\Business.EAB2AA85.Up2Date

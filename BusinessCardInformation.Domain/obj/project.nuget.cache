@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8FcaA6gW5bs=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\moham\\source\\repos\\BusinessCardInformation\\business-card-information-backend\\BusinessCardInformation.Domain\\BusinessCardInformation.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\moham\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.2\\microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
