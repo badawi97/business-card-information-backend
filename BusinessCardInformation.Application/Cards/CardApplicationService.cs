@@ -33,7 +33,6 @@ namespace BusinessCardInformation.Application.Cards
             var card = _mapper.Map<Card>(input);
             var createdCard = await _cardRepository.CreateAsync(card);
             return _mapper.Map<CardDto>(createdCard);
-
         }
 
         public async Task<CardDto> UpdateAsync(Guid id, UpdateCardDto input)

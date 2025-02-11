@@ -1,16 +1,21 @@
 ﻿
+
+using BusinessCardInformation.Domain.Shared.Entities;
+
 namespace BusinessCardInformation.Domain.Cards.Entities
 {
-    public class Card
+    public class Card : AuditableEntity
     {
-        public Guid Id { get; set; }
-        public string? Name { get; set; }
-        public int? Gender { get; set; }
-        public DateTime? DateOfBirth { get; set; }
-        public string? Email { get; set; }
-        public string? Phone { get; set; }
-        public string? Photo { get; set; }
-        public string? Address { get; set; }
+        public Guid Id { get; private set; }
+        public string? Name { get; private set; }
+        public int? Gender { get; private set; }
+        public DateTime? DateOfBirth { get; private set; }
+        public string? Email { get; private set; }
+        public string? Phone { get; private set; }
+        public string? Photo { get; private set; }
+        public string? Address { get; private set; }
+
+        private Card() { }
 
         public Card Update(Card updatedCard)
         {
@@ -39,6 +44,27 @@ namespace BusinessCardInformation.Domain.Cards.Entities
                 Email = updatedCard.Email;
             }
             return this;
+        }
+
+        public void UpdateName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Name cannot be empty", nameof(name));
+            Name = name;
+        }
+
+        public void UpdateEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                throw new ArgumentException("Email cannot be empty", nameof(email));
+            Email = email;
+        }
+
+        public void UpdatePhone(string phone)
+        {
+            if (string.IsNullOrWhiteSpace(phone))
+                throw new ArgumentException("Phone cannot be empty", nameof(phone));
+            Phone = phone;
         }
     }
 

@@ -1,5 +1,7 @@
 ﻿using BusinessCardInformation.Domain.Cards.Entities;
 using BusinessCardInformation.Domain.Cards.Interfaces;
+using BusinessCardInformation.Domain.Shared.Interfaces;
+using BusinessCardInformation.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace BusinessCardInformation.Infrastructure.Repositories.Cards
@@ -7,9 +9,12 @@ namespace BusinessCardInformation.Infrastructure.Repositories.Cards
     public class CardRepository : ICardRepository
     {
         private readonly BusinessCardInformationDbContext _context;
-        public CardRepository(BusinessCardInformationDbContext context)
+        private readonly IUserContextService _userContextService;
+
+        public CardRepository(BusinessCardInformationDbContext context, IUserContextService userContextService)
         {
             _context = context;
+            _userContextService = userContextService;
         }
 
         public async Task<List<Card>> GetListAsync(
@@ -48,35 +53,70 @@ namespace BusinessCardInformation.Infrastructure.Repositories.Cards
             {
                 query = query.Where(card => card.Email != null ? card.Email.Contains(email) : true);
             }
+
+            query = sorting switch
+            {
+                "name" => query.OrderBy(c => c.Name),
+                "name_desc" => query.OrderByDescending(c => c.Name),
+                "dateOfBirth" => query.OrderBy(c => c.DateOfBirth),
+                "dateOfBirth_desc" => query.OrderByDescending(c => c.DateOfBirth),
+                _ => query.OrderBy(c => c.Id)
+            };
+
             query = query.Skip(skipCount).Take(maxResultCount);
 
             return await query.ToListAsync();
 
         }
 
+        public async Task<List<Card>> GetDeletedCardsAsync()
+        {
+            return await _context.Cards.IgnoreQueryFilters()
+                .Where(c => c.IsDeleted)
+                .ToListAsync();
+        }
+
         public async Task<Card> CreateAsync(Card card)
         {
-
-            await _context.Cards.AddAsync(card);
+            _context.Cards.Add(card);
             await _context.SaveChangesAsync();
-
             return card;
         }
 
         public async Task<Card> UpdateAsync(Guid id, Card card)
         {
-            var existingCard = await GetByIdAsync(id);
-            existingCard.Update(card);
-            _context.Cards.Update(existingCard);
-            await _context.SaveChangesAsync();
-            return existingCard;
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                var existingCard = await GetByIdAsync(id);
+                Card updatedCard = existingCard.Update(card);
+                _context.Cards.Update(updatedCard);
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+                return updatedCard;
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            var card = await GetByIdAsync(id);
-            _context.Cards.Remove(card);
-            await _context.SaveChangesAsync();
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                var card = await GetByIdAsync(id);
+                _context.Cards.Remove(card);
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
 
         public async Task<int> GetCountAsync()
@@ -86,12 +126,8 @@ namespace BusinessCardInformation.Infrastructure.Repositories.Cards
 
         public async Task<Card> GetByIdAsync(Guid id)
         {
-            var card = await _context.Cards.FirstOrDefaultAsync(card => card.Id == id);
-            if (card == null)
-            {
-                throw new KeyNotFoundException($"Card with Id {id} was not found.");
-            }
-            return card;
+            return await _context.Cards.FindAsync(id)
+                   ?? throw new KeyNotFoundException($"Card with Id {id} was not found.");
         }
     }
 }
