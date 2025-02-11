@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\build\BusinessCardInformation.HttpApi.Host.props" />
-</Project>
